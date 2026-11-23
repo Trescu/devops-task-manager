@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1120">
+  <meta name="description" content="DevOps Task Manager – feladatkezelő demonstráció">
+  <title>DevOps Task Manager</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">D<span>+</span></div>
+        <div><strong>DevOps</strong><small>TASK MANAGER</small></div>
+      </div>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav aria-label="Főmenü">
+        <a class="nav active" href="#dashboard"><span class="navicon">▦</span> Áttekintés</a>
+        <a class="nav" href="#tasks"><span class="navicon">☑</span> Feladatok</a>
+        <a class="nav" href="https://github.com/Trescu/devops-task-manager" target="_blank" rel="noreferrer"><span class="navicon">⌘</span> GitHub repository ↗</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="live"><span class="dot" id="health-dot"></span><span id="health-text">Kapcsolódás...</span></div><p>ASP.NET Core 8 · Docker<br>GitHub Actions · Vercel</p></div>
+    </aside>
+    <main class="main" id="dashboard">
+      <div class="topbar"><span class="breadcrumb">Workspace <b>/</b> Áttekintés</span><span class="pill"><span class="small-dot"></span> DEMO ENVIRONMENT</span></div>
+      <header class="header">
+        <div><div class="eyebrow">DEVOPS SANDBOX · V1.0</div><h1>Feladatok áttekintése<span class="period">.</span></h1><p>Tervezd meg a napod, kövesd a munkád és tarts mindent egy helyen.</p></div>
+        <button class="primary" id="new-button" type="button">＋ Új feladat</button>
+      </header>
+      <div class="stats">
+        <article class="stat"><span class="stat-label">Összes feladat <span>↗</span></span><strong id="stat-total">0</strong><small>Nyilvántartott feladatok</small><div class="stat-icon blue">▦</div></article>
+        <article class="stat"><span class="stat-label">Folyamatban <span>↗</span></span><strong id="stat-progress">0</strong><small>Aktív munkafolyamatok</small><div class="stat-icon orange">◷</div></article>
+        <article class="stat"><span class="stat-label">Elvégezve <span>↗</span></span><strong id="stat-done">0</strong><small>Sikeresen lezárva</small><div class="stat-icon green">✓</div></article>
+      </div>
+      <section class="tasks" id="tasks">
+        <div class="section-title"><div><h2>Feladataim <span class="count" id="task-count">0</span></h2><p>Kezeld és rendszerezd az aktuális teendőket.</p></div></div>
+        <div class="toolbar"><label class="search">⌕ <input id="search" type="search" placeholder="Keresés a feladatok között..." aria-label="Feladat keresése"></label><select id="filter" aria-label="Állapotszűrő"><option value="all">Összes állapot</option><option value="todo">Teendő</option><option value="in-progress">Folyamatban</option><option value="done">Elvégezve</option></select><button class="refresh" id="refresh" type="button" title="Frissítés">↻</button></div>
+        <div class="tablewrap"><table><thead><tr><th>FELADAT</th><th>PRIORITÁS</th><th>ÁLLAPOT</th><th>LÉTREHOZVA</th><th class="last">MŰVELET</th></tr></thead><tbody id="task-rows"><tr><td colspan="5" class="empty">Feladatok betöltése...</td></tr></tbody></table></div>
+        <div class="tablefooter"><span id="footer-count">0 feladat</span><span>Memóriaalapú demo · az adatok újraindításkor elveszhetnek</span></div>
+      </section>
+      <footer class="foot">DEVOPS TASK MANAGER <span>© 2026 · UNIVERSITY PROJECT</span></footer>
+    </main>
+  </div>
+  <dialog id="editor" aria-labelledby="dialog-title"><form id="task-form"><div class="dialog-head"><div><span class="eyebrow">FELADAT SZERKESZTŐ</span><h2 id="dialog-title">Új feladat</h2></div><button type="button" id="close-dialog" class="close" aria-label="Bezárás">×</button></div><label>Feladat címe <span>*</span><input name="title" maxlength="120" required placeholder="Pl. CI/CD pipeline ellenőrzése"></label><label>Leírás <textarea name="description" maxlength="500" rows="3" placeholder="Rövid leírás (opcionális)"></textarea></label><div class="formgrid"><label>Prioritás<select name="priority"><option value="low">Alacsony</option><option value="medium" selected>Közepes</option><option value="high">Magas</option></select></label><label>Állapot<select name="status"><option value="todo">Teendő</option><option value="in-progress">Folyamatban</option><option value="done">Elvégezve</option></select></label></div><div class="actions"><button type="button" class="secondary" id="cancel-dialog">Mégse</button><button type="submit" class="primary" id="save-button">Mentés</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
