@@ -11,4 +11,4 @@ COPY --from=build /app/publish .
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 USER $APP_UID
-ENTRYPOINT ["dotnet", "TaskManager.Api.dll"]
+CMD ["sh", "-c", "exec dotnet TaskManager.Api.dll --urls http://0.0.0.0:${PORT:-8080}"]
