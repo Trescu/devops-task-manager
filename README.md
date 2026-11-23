@@ -63,3 +63,13 @@ bash scripts/smoke-test.sh http://localhost:8080
 ## Definition of Done
 
 A CI csak akkor zöld, ha build + unit teszt + konténeres sandbox indítás + HTTP smoke tesztek sikeresek. A Vercel deploy állapotát külön ellenőrizni kell; a zöld CI önmagában nem bizonyítja a felhős telepítés sikerét.
+
+## Valós CI teszteredmény (2026-11-23)
+
+- Ellenőrző PR: https://github.com/Trescu/devops-task-manager/pull/1 (merged)
+- Sikeres Actions futás: https://github.com/Trescu/devops-task-manager/actions/runs/45143640233
+- Release build: **0 warning, 0 error**
+- xUnit: **9 sikeres, 0 sikertelen**
+- Docker build, sandbox futtatás: **sikeres**
+- Smoke: **PASS: health, frontend, create, read, update, delete**
+- A felhős Vercel build READY, de publikus HTTP teszt és automatikus GitHub–Vercel CD még nincs igazolva.
