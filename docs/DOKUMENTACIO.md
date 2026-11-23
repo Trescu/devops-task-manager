@@ -39,7 +39,7 @@ Sikertelen build/teszt esetén a további lépések nem futnak. A konténeres sm
 
 ## 5. CD felhőbe
 
-A Vercelhez kötött GitHub repository a `main` commitjait automatikusan építi és telepíti. A `Dockerfile.vercel` a felhőben is .NET 8 alapú image-et épít, HTTP-szerverként indítja az alkalmazást, a Vercel által biztosított `PORT` változón figyelve.
+A Vercelen létrehozott projekt kezdeti konténeres buildje sikeres (READY); a bevezetés azonban jelenleg egyszeri fájlfeltöltésből indított deployment. A GitHub-repositoryhoz tartozó Vercel Git-integráció nem rendelkezik hozzáféréssel, ezért **a felhős CD még nem automatizált**. Ehhez a Vercel GitHub-integrációban engedélyezni kell a `Trescu/devops-task-manager` repositoryt, majd a Vercel-projektet a Git-repositoryhoz kapcsolni. A Vercel a gyökérben lévő `Dockerfile`-t használja; a `Dockerfile.vercel` csak alternatív mintaként szerepel.
 
 **Korlát:** a GitHub Actions CI és a Vercel Git-alapú deploy nem alkot automatikusan, egymásra váró release gate-et. A Vercel build függetlenül indulhat CI-től. Szigorú „csak sikeres teszt után élesíthető” követelmény esetén Vercel Deployment Checks vagy kizárólag CI-ből történő, tokenes telepítés szükséges.
 
@@ -101,3 +101,13 @@ bash scripts/smoke-test.sh http://localhost:8080
 - https://docs.docker.com/build/
 - https://vercel.com/docs
 - https://vercel.com/changelog/deploy-a-container-from-a-plain-dockerfile
+
+## 12. Aktuális ellenőrzési státusz
+
+- GitHub: a forráskód, konfiguráció és dokumentáció elérhető a main ágon.
+- Vercel: egy konténeres build READY állapotú.
+- GitHub Actions: sikeres futás egyelőre nincs igazolva; az Actions felületen ellenőrizni kell.
+- HTTP: publikus health és CRUD smoke teszt sikeressége még nincs függetlenül igazolva.
+- Automatikus cloud CD: Vercel–GitHub repository kapcsolat nincs beállítva.
+
+Ezeket az állapotokat a leadás előtt a valós teszteredmények szerint kell frissíteni.
