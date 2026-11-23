@@ -106,7 +106,7 @@ bash scripts/smoke-test.sh http://localhost:8080
 
 - GitHub: a forráskód, konfiguráció és dokumentáció elérhető a main ágon.
 - Vercel: egy konténeres build READY állapotú.
-- GitHub Actions: sikeres futás egyelőre nincs igazolva; az Actions felületen ellenőrizni kell.
+- GitHub Actions: **sikeres futás igazolva**. PR #1 (merged), run #45143640233; build 0 error/0 warning, 9/9 xUnit, Docker image build, sandbox container startup és teljes HTTP CRUD smoke teszt sikeres.
 - HTTP: publikus health és CRUD smoke teszt sikeressége még nincs függetlenül igazolva.
 - Automatikus cloud CD: Vercel–GitHub repository kapcsolat nincs beállítva.
 
