@@ -40,7 +40,7 @@ docker run --rm -p 8080:8080 -e ASPNETCORE_URLS=http://+:8080 devops-task-manage
 5. HTTP smoke tesztek: health + Create/Read/Update/Delete
 6. A tesztelt konténer artifact mentése (Docker tar)
 
-Vercel Git integráció esetén minden main push automatikus felhődeployt is indít a gyökérben lévő `Dockerfile.vercel` alapján. **Fontos:** a Git-alapú Vercel-deploy külön folyamat, alapból nem vár a GitHub Actions CI eredményére. A CI által ellenőrzött image és a Vercel által felépített image ugyanabból a Dockerfile-alapból, de külön buildként készül. Éles használathoz release gate szükséges. A projekt célja oktatási sandbox.
+**Felhődeploy állapota:** az első Vercel konténeres build sikeres (READY), de a Vercel GitHub-integráció még nincs engedélyezve ehhez a repositoryhoz. A jelenlegi Vercel deployment kézzel, a repository fájljaiból készült, **nem Git push váltotta ki**. Automatikus Vercel CD-hez a repositoryt a Vercel Git integrációjában hozzá kell rendelni. A Vercel a gyökérkönyvtárban található `Dockerfile` alapján buildel. A `Dockerfile.vercel` alternatív minta, nem az aktív Dockerfile. **Fontos:** a Git-alapú Vercel-deploy külön folyamat, alapból nem vár a GitHub Actions CI eredményére. A CI által ellenőrzött image és a Vercel által felépített image külön buildként készül; automatikus, egymásra váró GitHub Actions → Vercel release-folyamat még nincs beállítva. Éles használathoz release gate szükséges. A projekt célja oktatási sandbox.
 
 ## Futtatás és tesztelés lokálisan
 
